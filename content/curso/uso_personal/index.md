@@ -77,20 +77,123 @@ Aquí hay un ejemplo de de un archivo .gitignore
 
 
 ## Commit
+Una vez que todos los archivos que se desean agregar están en la etapa de stage, se utiliza el comando
+
+``` bash
+git commit -m "mensaje descriptivo del commit"
+```
 
 ## Historial de commits
 
-## Deshacer git add
+Para revisar el historial de commits utilizamos
 
+``` bash
+git log
+```
+
+## Deshacer git add
+Utilizar
+
+``` bash
+git reset mi-archivo.txt
+```
+eliminará "mi-archivo.txt" de la zona de preparación, pero el archivo seguirá estando en tu directorio de trabajo y no se verá afectado por esta operación.
 ## git rm
+El comando git rm se utiliza para eliminar archivos de seguimiento en Git y también para marcarlos como "eliminados" en la zona de preparación (stage). Puedes usarlo para eliminar archivos tanto del sistema de archivos como del control de versiones de Git al mismo tiempo.
+
+La sintaxis básica es:
+
+``` bash
+git rm nombre-de-archivo
+```
 
 ## git mv
 
+El comando git mv se utiliza para renombrar o mover archivos en un repositorio Git. Al utilizar este comando, Git registra el cambio de nombre o movimiento de un archivo, lo que ayuda a mantener el historial de versiones de manera precisa. La sintaxis básica es:
+
+``` bash
+git mv archivo-antiguo archivo-nuevo
+```
 ## Crear una rama y cambiar a ella
+Para realizar esto solo necesitamos utilizar el comando:
+
+``` bash
+git checkout -b nombre_de_la_rama
+```
 
 ## Fusionar ramas 
 
-## Cómo hacer un push
+El comando **git merge** se utiliza para combinar los cambios de una rama en otra. Esto significa que podemos tomar los cambios realizados en una rama y fusionarlos en otra rama, lo que es especialmente útil cuando trabajamos en proyectos colaborativos o cuando deseamos incorporar nuevas características desarrolladas en una rama de desarrollo en la rama principal del proyecto.
 
+La sintaxis básica del comando git merge es la siguiente:
+
+``` bash
+git merge nombre-de-la-rama
+
+```
+
+## Crear llaves para GitHub
+
+### ¿Tenemos llaves?
+
+``` bash
+$ ssh-add -l -E sha256
+> 2048 SHA256:274ffWxgaxq/tSINAykStUL7XWyRNcRTlcST1Ei7gBQ /Users/USERNAME/.ssh/id_rsa (RSA)
+```
+
+El comando ssh-add debe imprimir una cadena larga de números y letras. Si no imprime nada, debemos generar una nueva clave SSH y asociarla a GitHub.
+
+### Generación de llaves
+
+Desde terminal escribimos
+``` bash
+ssh-keygen -t ed25519 -C "your_email@example.com"
+```
+y solo presionamos enter a todo.
+Ahora toca agregar la clave SSH al ssh-agent
+
+1. Primero se inicia el agente SSH en segundo plano
+``` bash
+$ eval "$(ssh-agent -s)"
+> Agent pid 59566
+
+```
+2. Se agrega la llave privada SSH al ssh-agent.
+``` bash
+ssh-add ~/.ssh/id_ed25519
+```
+
+3. Se utiliza el siguiente comando para obtener la llabe SSH
+``` bash
+$ cat ~/.ssh/id_ed25519.pub
+```
+Se copia la llave que se muestra.
+
+En el perfil de GitHub > Settings > sección "Acceso" de la barra lateral > clic en Claves SSH y GPG.
+
+En el campo "Title" (Título), agregamos una etiqueta descriptiva para la clave nueva. Por ejemplo, si estamos utilizando un portátil personal, podemos llamar a esta clave "Portátil personal". El tipo de clave lo dejamos como autenticación. En el campo "Clave", pegamos la clave pública. Y clic en Agregar clave SSH.
+
+## Sincronización de repositorios
+
+Una vez que tenemos nuestro repositorio listo para subir a GitHub, necesitamos:
+
+1. Acceder a la plataforma.
+2. Crear un repositorio con el mismo nombre.
+3. Utilizar los siguientes comandos en la terminal:
+   
+``` bash
+git remote add origin https://github.com/Usuario/nomre_repo.git
+git branch -M main
+git push -u origin main
+```
+Este primer push se utiliza para subir todo lo que tenemos al repositorio.
+
+## Cómo hacer un push
+Una vez que nuestros respositorios están sincronizados, solo necesitamos ejecutar
+
+``` bash
+git push
+```
+para subir los cambios realizados.
 
 

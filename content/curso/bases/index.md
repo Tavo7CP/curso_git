@@ -6,7 +6,7 @@ description: "Aprende lo más básico."
 slug: ""
 tags: [""]
 series: ["Curso"]
-series_order: 1
+series_order: 6
 ---
 
 # Lo básico de lo básico.

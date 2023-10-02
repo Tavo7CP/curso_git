@@ -6,12 +6,12 @@ description: "Aprende lo más básico."
 slug: ""
 tags: [""]
 series: ["Curso"]
-series_order: 2
+series_order: 7
 ---
 
 # Flujo de trabajo con Git
 
-## Insertar aqui imagen
+![Ciclo de vida de Git](esquemaGit2.png)
 
 ## Conceptos clave.
 
